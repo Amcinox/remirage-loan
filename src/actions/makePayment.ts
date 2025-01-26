@@ -20,7 +20,7 @@ export async function makePayment(loanId: number, data: MakePayment): Promise<Se
                 paymentDate: new Date(),
             },
         });
-        revalidatePath(`/loans/${loanId}`);
+        revalidatePath(`/`);
         return { data: paymentRecord };
     } catch (error) {
         return { error: handleServerActionError(error) };

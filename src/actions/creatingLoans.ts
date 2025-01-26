@@ -13,7 +13,7 @@ export async function createLoan(data: CreateLoan): Promise<ServerActionResult<a
         const loan = await prisma.loan.create({
             data: validatedData
         });
-        revalidatePath("/loans");
+        revalidatePath("/");
         return { data: loan };
     } catch (error) {
         console.dir({ error }, { depth: null });
