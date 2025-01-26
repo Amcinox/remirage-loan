@@ -3,10 +3,7 @@ import { formatCurrency } from "@/utils/helper"
 import type { Loan } from "@prisma/client"
 
 export function TotalInterestWidget({ loans }: { loans: Loan[] }) {
-    const totalInterest = loans.reduce((sum, loan) => {
-        const totalPayments = loan.monthlyPayment * loan.duration
-        return sum + (totalPayments - loan.totalAmount)
-    }, 0)
+    const totalInterest = loans.reduce((sum, loan) => sum + loan.fees, 0);
 
 
 

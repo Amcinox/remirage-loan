@@ -1,7 +1,7 @@
 import { Suspense } from "react"
 import { Skeleton } from "@/components/ui/skeleton"
 import prisma from "@/lib/prisma";
-import { LoanComparisonWidget } from "@/sections/overview/loan-comparison-widget";
+import LoanComparisonWidget from "@/sections/overview/loan-comparison-widget";
 import { LoanDistributionWidget } from "@/sections/overview/loan-distribution-widget";
 import { LoanProgressWidget } from "@/sections/overview/loan-progress-widget";
 import { LoanStatusWidget } from "@/sections/overview/loan-status-widget";
@@ -21,58 +21,54 @@ export default async function DashboardPage() {
   })
 
   return (
-    <div className="space-y-4">
-      <h1 className="text-3xl font-bold">Loan Dashboardd</h1>
-      <div className="grid gap-4 grid-cols-12">
-        <Suspense fallback={<Skeleton className="h-[120px] col-span-3" />}>
-          <div className=" col-span-3">
-            <TotalLoanAmountWidget loans={loans} />
-          </div>
+    <div className="container mx-auto px-4 py-6 space-y-6">
+      <h1 className="text-2xl md:text-3xl font-bold text-gray-800">Loan Dashboard</h1>
+
+      {/* Responsive Grid Layout */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* Compact Widgets */}
+        <Suspense fallback={<Skeleton className="h-[120px] w-full" />}>
+          <TotalLoanAmountWidget loans={loans} />
         </Suspense>
-        <Suspense fallback={<Skeleton className="h-[120px] col-span-3" />}>
-          <div className="h-full col-span-3">
-            <LoanStatusWidget loans={loans} />
-          </div>
+
+        <Suspense fallback={<Skeleton className="h-[120px] w-full" />}>
+          <LoanStatusWidget loans={loans} />
         </Suspense>
-        <Suspense fallback={<Skeleton className="h-[120px] col-span-3" />}>
-          <div className=" col-span-3">
-            <LoanTermWidget loans={loans} />
-          </div>
+
+        <Suspense fallback={<Skeleton className="h-[120px] w-full" />}>
+          <LoanTermWidget loans={loans} />
         </Suspense>
-        <Suspense fallback={<Skeleton className="h-[120px] col-span-3" />}>
-          <div className="col-span-3">
-            <TotalInterestWidget loans={loans} />
-          </div>
+
+        <Suspense fallback={<Skeleton className="h-[120px] w-full" />}>
+          <TotalInterestWidget loans={loans} />
         </Suspense>
-        <Suspense fallback={<Skeleton className="h-[300px] col-span-6" />}>
-          <div className="col-span-6">
-            <LoanDistributionWidget loans={loans} />
-          </div>
+      </div>
+
+      {/* Larger Visualization Widgets */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <Suspense fallback={<Skeleton className="h-[300px] w-full" />}>
+          <LoanDistributionWidget loans={loans} />
         </Suspense>
-        <Suspense fallback={<Skeleton className="h-[300px] col-span-6" />}>
-          <div className=" col-span-6">
-            <LoanComparisonWidget loans={loans} />
-          </div>
+
+        <Suspense fallback={<Skeleton className="h-[300px] w-full" />}>
+          <LoanComparisonWidget loans={loans} />
         </Suspense>
-        <Suspense fallback={<Skeleton className="h-[300px] col-span-6" />}>
-          <div className=" col-span-6">
-            <UpcomingPaymentsWidget loans={loans} />
-          </div>
+
+        <Suspense fallback={<Skeleton className="h-[300px] w-full" />}>
+          <UpcomingPaymentsWidget loans={loans} />
         </Suspense>
-        <Suspense fallback={<Skeleton className="h-[300px] col-span-6" />}>
-          <div className=" col-span-6">
-            <LoanProgressWidget loans={loans} />
-          </div>
+
+        <Suspense fallback={<Skeleton className="h-[300px] w-full" />}>
+          <LoanProgressWidget loans={loans} />
         </Suspense>
-        <Suspense fallback={<Skeleton className="h-[300px] col-span-12" />}>
-          <div className=" col-span-12">
-            <MonthlyPaymentTrendWidget loans={loans} />
-          </div>
+      </div>
+
+      {/* Full-width Trend Widget */}
+      <div className="w-full">
+        <Suspense fallback={<Skeleton className="h-[300px] w-full" />}>
+          <MonthlyPaymentTrendWidget loans={loans} />
         </Suspense>
       </div>
     </div>
   )
 }
-
-
-

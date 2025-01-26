@@ -25,23 +25,26 @@ export default async function LoansPage() {
 
 
     return (
-        <Container>
+        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-4 sm:space-y-0">
                 <Suspense> <CreateLoanModal /></Suspense>
             </div>
-            <Card className="max-w-7xl ">
-                <CardHeader>
-                    <CardTitle>Loans</CardTitle>
-                </CardHeader>
-                <CardContent >
-                    <DataTable
-                        data={loans}
-                        columns={columns}
-                        filters={filters}
-                    />
-                </CardContent>
-            </Card>
-        </Container>
+            <div className="grid  gap-4 grid-cols-12">
+
+                <Card className="col-span-12 " >
+                    <CardHeader>
+                        <CardTitle>Loans</CardTitle>
+                    </CardHeader>
+                    <CardContent >
+                        <DataTable
+                            data={loans}
+                            columns={columns}
+                            filters={filters}
+                        />
+                    </CardContent>
+                </Card>
+            </div>
+        </div>
     )
 
 

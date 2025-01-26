@@ -63,8 +63,8 @@ export default function Container({ children, customBreadcrumb }: ContainerProps
   };
 
   return (
-    <>
-      <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
+    <div className='container bg-red-300'>
+      <header className="flex h-16 shrink-0 items-center gap-2  ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
         <div className="flex items-center gap-2 px-4">
           <Breadcrumb>
             <BreadcrumbList>
@@ -76,6 +76,6 @@ export default function Container({ children, customBreadcrumb }: ContainerProps
       <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
         {children}
       </div>
-    </>
+    </div>
   );
 }

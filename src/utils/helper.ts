@@ -1,6 +1,6 @@
 export function formatCurrency(number?: number, currency: string = 'JPY'): string {
     //number check if it's a number
-    if (!number || isNaN(number)) {
+    if (!number && number !== 0 || isNaN(number)) {
         return JSON.stringify(number);
     }
 
