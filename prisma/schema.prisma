@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Loan {
+  id              Int              @id @default(autoincrement())
+  name            String
+  description     String
+  icon            String?
+  currency        String           @default("JPY")
+  status          String           @default("PENDING")
+  totalAmount     Float
+  fees            Float
+  duration        Int  
+  monthlyPayment  Float
+  startDate       DateTime
+  paymentRecords  PaymentRecord[]
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+}
+
+model PaymentRecord {
+  id              Int              @id @default(autoincrement())
+  loanId          Int
+  loan            Loan             @relation(fields: [loanId], references: [id])
+  monthNumber     Int
+  amountPaid      Float
+  paymentDate     DateTime?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+}
